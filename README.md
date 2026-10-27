@@ -1,1 +1,20 @@
-# main.py
+import telebot
+
+TOKEN = '9178181200:AAEoo2x59PHUK_a23gp03pcP4hOYEtSc7H4'
+bot = telebot.TeleBot(TOKEN)
+
+
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+  bot.reply_to(
+      message, 'سلام! من **پرشین گارد** هستم، ربات مدیریت گروه شما.'
+  )
+
+
+@bot.message_handler(func=lambda message: True)
+def echo_all(message):
+  print(f'پیام دریافت شد: {message.text}')
+
+
+print('پرشین گارد آماده و روشن است...')
+bot.infinity_polling()
